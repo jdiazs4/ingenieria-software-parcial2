@@ -13,7 +13,7 @@ public class ProductoService {
     private ProductoRepository productoRepository;
     
     public List<ProductoEntity> buscarTodos() {
-       return (List<ProductoEntity>) this.productoRepository.findAll();
+       return (List<ProductoEntity>) this.productoRepository.findAllProducts();
        
     }
     
