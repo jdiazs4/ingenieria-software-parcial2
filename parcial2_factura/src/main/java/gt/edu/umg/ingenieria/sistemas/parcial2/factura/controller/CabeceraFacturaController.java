@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,6 +26,11 @@ public class CabeceraFacturaController {
     @PostMapping("/crearFactura")
     public CabeceraFacturaEntity crearFactura(@RequestBody(required = true) CabeceraFacturaEntity factura){
         return this.facturaService.crearFactura(factura);
+    }
+    
+    @GetMapping("/buscarPorNit")
+    public List<CabeceraFacturaEntity> buscarPorNit(@RequestParam String nit, @RequestParam String orden){
+        return this.facturaService.buscarPorNit(nit,orden.toUpperCase());
     }
     
 }

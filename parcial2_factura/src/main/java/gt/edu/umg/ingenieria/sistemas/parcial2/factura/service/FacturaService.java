@@ -30,10 +30,23 @@ public class FacturaService {
     }
     
     public CabeceraFacturaEntity crearFactura(CabeceraFacturaEntity factura){
+        String nombre = factura.getClientName();
+        nombre = nombre.substring(0,1).toUpperCase() + nombre.substring(1).toLowerCase();
+        
+        factura.setClientName(nombre);
+        
         return this.cabeceraFacturaRepository.save(factura);
     }
     
     public DetalleFacturaEntity crearDetalleFactura(DetalleFacturaEntity detalle){
         return this.detalleFacturaRepository.save(detalle);
+    }
+    
+    public List<CabeceraFacturaEntity> buscarPorNit(String nit,String orden){
+        if(orden.toUpperCase()=="ASC"){
+            return this.cabeceraFacturaRepository.findAllCabeceraASC(nit);
+        }else{
+            return this.cabeceraFacturaRepository.findAllCabeceraDESC(nit);
+        }
     }
 }
