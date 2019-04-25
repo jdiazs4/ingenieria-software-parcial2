@@ -29,4 +29,11 @@ public class FacturaService {
         return this.detalleFacturaRepository.findByHeader(idCabeceraFactura);
     }
     
+    public CabeceraFacturaEntity crearFactura(CabeceraFacturaEntity factura){
+        return this.cabeceraFacturaRepository.save(factura);
+    }
+    
+    public DetalleFacturaEntity crearDetalleFactura(DetalleFacturaEntity detalle){
+        return this.detalleFacturaRepository.save(detalle);
+    }
 }
