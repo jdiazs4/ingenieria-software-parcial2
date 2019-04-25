@@ -13,7 +13,30 @@ public class ProductoService {
     private ProductoRepository productoRepository;
     
     public List<ProductoEntity> buscarTodos() {
-        return (List<ProductoEntity>) this.productoRepository.findAll();
+       return (List<ProductoEntity>) this.productoRepository.findAll();
+       
     }
     
+    public ProductoEntity registrarProducto(ProductoEntity producto){
+        String nombre = producto.getName();
+        nombre = nombre.substring(0,1).toUpperCase() + nombre.substring(1).toLowerCase();
+        producto.setName(nombre);
+        return this.productoRepository.save(producto);
+    }
+    
+    public String actualizarStockIncrementar(long id, int cantidad){
+        ProductoEntity p = this.productoRepository.findById(id).get();
+        p.setStock(p.getStock() + cantidad);
+        this.productoRepository.save(p);
+        
+        return "Stock actualizado ["+p.getName()+" "+p.getStock()+"]";
+    }
+    
+    public String actualizarStockDecrementar(long id, int cantidad){
+        ProductoEntity p = this.productoRepository.findById(id).get();
+        p.setStock(p.getStock() - cantidad);
+        this.productoRepository.save(p);
+        
+        return "Stock actualizado ["+p.getName()+" "+p.getStock()+"]";
+    }
 }
