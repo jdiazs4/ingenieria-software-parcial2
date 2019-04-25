@@ -27,16 +27,30 @@ public class CabeceraFacturaEntity implements Serializable {
     @Column(name = "fecha")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
+    
+    @Column(name = "direccion")
+    private String direction;
 
     public CabeceraFacturaEntity() {
     }
 
-    public CabeceraFacturaEntity(String clientName, String nit, Date date) {
+    public CabeceraFacturaEntity(String clientName, String nit, Date date, String direction) {
         this.clientName = clientName;
         this.nit = nit;
         this.date = date;
+        this.direction=direction;
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    
+    
     public Long getId() {
         return id;
     }
